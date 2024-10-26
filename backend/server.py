@@ -1,14 +1,3 @@
-# from flask import Flask
-
-# app = Flask(__name__)
-
-# @app.route("/members")
-# def members():
-#   return {"members": ["Member1", "Member2", "Member3"]}
-
-# if __name__ =="__main__":
-#   app.run(debug=True)
-
 from flask import Flask, jsonify, request
 import os
 
@@ -65,13 +54,3 @@ def get_income_info():
 
 if __name__ == "__main__":
     app.run(port=port)
-
-  
-  
-# from flask import Flask
-
-# app = Flask(__name__)
-
-# @app.route("/")
-# def hello_world():
-#     return "<p>Hello, World!</p>"
