@@ -27,9 +27,7 @@ const data = [
 const Home = () => {
   return (
     <Layout>
-      {/* Main Content */}
       <Content style={{ margin: "24px 16px 0" }}>
-        {/* Welcome Message */}
         <div
           style={{
             padding: 24,

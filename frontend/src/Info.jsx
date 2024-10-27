@@ -1,27 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import React from "react";
-import {
-  Breadcrumb,
-  Layout,
-  Menu,
-  Card,
-  Row,
-  Col,
-  Image,
-  Typography,
-  Button,
-} from "antd";
-import {
-  InstagramOutlined,
-  TwitterOutlined,
-  LinkedinOutlined,
-  MailOutlined,
-  ArrowRightOutlined,
-} from "@ant-design/icons";
+import { Card, Row, Col, Image, Typography, Button } from "antd";
+import { ArrowRightOutlined } from "@ant-design/icons";
 import "./Info.css";
 
-const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 
 const Info = () => {
