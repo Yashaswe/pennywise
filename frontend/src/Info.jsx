@@ -2,6 +2,9 @@ import React from "react";
 import { Card, Row, Col, Image, Typography, Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import "./Info.css";
+import finan from "./finan.png";
+import respon from "./respon.png";
+import sustain from "./sustain.png";
 
 const { Title } = Typography;
 
@@ -9,7 +12,7 @@ const Info = () => {
   const cardData = [
     {
       title: "Responsible Financing",
-      image: "/src/finan.png",
+      image: finan,
       alt: "Responsible Financing",
       description:
         "Discover sustainable financing practices that empower you to secure your financial future. Learn how to make ethical financial decisions, manage your money wisely, and invest in ways that benefit both you and the community.",
@@ -17,7 +20,7 @@ const Info = () => {
     },
     {
       title: "Sustainable Investing",
-      image: "/src/respon.png",
+      image: respon,
       alt: "Sustainable Investing",
       description:
         "Explore the world of ESG (Environmental, Social, Governance) investing. Understand what sustainable investing entails and how you can align your investments with your values, supporting companies that prioritize positive social and environmental impact.",
@@ -25,7 +28,7 @@ const Info = () => {
     },
     {
       title: "Economic Conditions",
-      image: "/src/sustain.png",
+      image: sustain,
       alt: "Economic Conditions",
       description:
         "Stay informed about key economic factors such as inflation and its effects on your finances. Learn to recognize financial scams and understand how to protect your money in an ever-changing economic landscape.",

@@ -41,8 +41,7 @@ const Home = () => {
         <div
           style={{
             padding: 24,
-            background:
-              "url('/path/to/your/background-image.jpg') no-repeat center center",
+
             backgroundSize: "cover",
             borderRadius: "8px",
             textAlign: "center",

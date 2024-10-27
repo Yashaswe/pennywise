@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Layout, Menu, theme, Image, Typography } from "antd";
+import logo from "./logo2.png";
 
 import HomeBar from "./HomeBar";
 const { Header, Content, Footer, Sider } = Layout;
@@ -57,7 +58,7 @@ const App = () => {
       >
         <Link to="/" style={{ marginRight: "16px" }}>
           <Image
-            src="/src/logo2.png"
+            src={logo}
             alt="Logo"
             preview={false}
             style={{ width: "100px", height: "85px" }}
