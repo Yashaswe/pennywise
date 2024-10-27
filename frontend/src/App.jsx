@@ -16,6 +16,10 @@ const items = [
     label: "Finance Education",
     key: "info",
   },
+  {
+    label: "Settings",
+    key: "settings",
+  },
 ];
 
 const App = () => {
