@@ -11,11 +11,13 @@
   },
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^2.0.3",
     "antd": "^5.21.5",
     "axios": "^1.7.7",
     "cross-env": "^7.0.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
