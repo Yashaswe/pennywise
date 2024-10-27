@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Layout, Menu, theme, Image, Typography } from "antd";
 
 import HomeBar from "./HomeBar";
@@ -49,27 +49,27 @@ const App = () => {
           width: "100%",
           display: "flex",
           alignItems: "center",
-          background: "#DFD3C3",
+          background: "#AA8976",
           padding: "0 40px",
           height: 75,
           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <div style={{ marginRight: "16px" }}>
+        <Link to="/" style={{ marginRight: "16px" }}>
           <Image
             src="/src/logo2.png"
             alt="Logo"
             preview={false}
             style={{ width: "100px", height: "85px" }}
           />
-        </div>
+        </Link>
 
         <Menu
           style={{
             flex: 1,
             justifyContent: "center",
             borderBottom: "none",
-            backgroundColor: "#DFD3C3",
+            backgroundColor: "#AA8976",
           }}
           theme="light"
           mode="horizontal"
@@ -86,9 +86,15 @@ const App = () => {
           textAlign: "center",
           padding: "24px",
           backgroundColor: "#f0f2f5",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        <div>Created by Yashaswe, Aryama, Prashriya, and Aashma.</div>
+        <div
+          style={{ marginTop: "8px", fontSize: "14px", color: "#888" }}
+        ></div>
       </Footer>
     </Layout>
   );
