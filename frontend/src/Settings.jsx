@@ -5,11 +5,12 @@ import axios from "axios";
 import React from "react";
 import {Layout,Menu,Button, Form, Input, Select, } from "antd";
 import CalendarSettings from "./components/CalendarSettings";
+import CardSettings from "./CardSettings"
+import DEIRequests from "./DEIRequests";
+import AboutUs from "./Aboutus";
 const { Header, Content, Sider} = Layout;
 const { Option } = Select;
-const onFinish = (values) => {
-  console.log('Received values of form: ', values);
-}
+
   const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
     const key = String(index + 1);
     const labels = ["Information Settings", "Accommodations", "Announcement"];
@@ -37,7 +38,6 @@ const onFinish = (values) => {
   });
 
 const Settings = () => {
-    
     const [selectedKey, setSelectedKey] = useState('11');
 
     const items = [
@@ -84,8 +84,7 @@ const Settings = () => {
                 textAlign:"center"
               }}></p>
               <Form
-    name="complex-form"
-    onFinish={onFinish}
+    name="user_info"
     labelCol={{
       span: 5,
     }}
@@ -179,12 +178,46 @@ const Settings = () => {
 
             </div>
           );
-        // ... other cases for different menu items
-        default:
-          return <div>No content selected</div>;
+        case '21':
+          return (
+            <DEIRequests></DEIRequests>
+          );
+
+        case '31':
+          return(<AboutUs></AboutUs>)
+
+        case '32':
+          return (
+          <div style={{ backgroundColor:  '#F7DCB9'}}>
+            <h1 style = {{
+              textAlign: 'center',
+              textDecorationColor: '#AB886D',
+              color: '#DEAC80',
+              margin: '20px 0',
+            }}
+            >Important Notices</h1>
+            <CardSettings></CardSettings>
+          </div>
+
+
+          );
       }
     };
   
+
+  const [eventData, setEventData] = useState(null);
+    useEffect(() => {
+      const fetchEventData = async () => {
+        try {
+          const response = await axios.get('/api/get-event-data');
+          setEventData(response.data);
+        } catch (error) {
+          console.error('Error fetching event data:', error);
+        }
+      };
+  
+      fetchEventData();
+    }, []);
     return (
       <Layout>
         <Sider
