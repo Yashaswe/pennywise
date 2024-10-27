@@ -1,20 +1,6 @@
-import { useEffect, useState } from "react";
+import { Layout, theme, Typography, Form, Input, Button } from "antd";
 
-import {
-  Breadcrumb,
-  Layout,
-  Menu,
-  theme,
-  Image,
-  Card,
-  Typography,
-  Form,
-  Input,
-  Button,
-} from "antd";
-
-import Chatbot from "./Chatbot";
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 const { Title, Text } = Typography;
 
 const Home = () => {
@@ -23,9 +9,7 @@ const Home = () => {
   } = theme.useToken();
   return (
     <Layout>
-      {/* Main Content */}
       <Content style={{ margin: "24px 16px 0" }}>
-        {/* Welcome Message */}
         <div
           style={{
             padding: 24,
@@ -42,7 +26,6 @@ const Home = () => {
         </div>
       </Content>
 
-      {/* Right Sidebar */}
       <Sider
         theme="light"
         width={400}

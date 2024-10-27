@@ -1,29 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-  Outlet,
-  Link,
-  useLocation,
-  useNavigate,
-  Routes,
-  Route,
-} from "react-router-dom";
-import {
-  Breadcrumb,
-  Layout,
-  Menu,
-  theme,
-  Image,
-  Card,
-  Typography,
-  Form,
-  Input,
-  Button,
-} from "antd";
-import Home from "./Home";
-import Chatbot from "./Chatbot";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Layout, Menu, theme, Image, Typography } from "antd";
+
 import HomeBar from "./HomeBar";
 const { Header, Content, Footer, Sider } = Layout;
-const { Title, Text } = Typography;
 
 // Define menu items for navigation
 const items = [
@@ -37,13 +17,6 @@ const items = [
     key: "info",
   },
 ];
-
-// const items = ["Home", "AI Consultation", "Finance Education", "Settings"].map(
-//   (label, index) => ({
-//     key: String(index + 1),
-//     label,
-//   })
-// );
 
 const App = () => {
   const location = useLocation();
@@ -61,13 +34,9 @@ const App = () => {
   function handleClick(e) {
     navigate(e.key);
   }
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      {/* Header with logo and navigation */}
       <Header
         style={{
           position: "sticky",
@@ -108,7 +77,6 @@ const App = () => {
 
       <HomeBar />
 
-      {/* Footer */}
       <Footer
         style={{
           textAlign: "center",
