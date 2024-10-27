@@ -1,0 +1,17 @@
+.cs-message-input__content-editor-wrapper {
+  background-color: #dfd3c3;
+}
+.cs-message--incoming .cs-message__content {
+  background-color: #cc9b6d;
+}
+.cs-message-input__content-editor-container {
+  background-color: #dfd3c3;
+}
+
+.cs-message-input__content-editor {
+  background-color: #dfd3c3;
+}
+
+.cs-message--outgoing .cs-message__content {
+  background-color: #dfd3c3;
+}
