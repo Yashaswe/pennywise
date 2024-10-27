@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Layout, Menu, theme, Image, Typography } from "antd";
 
 import HomeBar from "./HomeBar";
@@ -55,14 +55,14 @@ const App = () => {
           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <div style={{ marginRight: "16px" }}>
+        <Link to="/" style={{ marginRight: "16px" }}>
           <Image
             src="/src/logo2.png"
             alt="Logo"
             preview={false}
             style={{ width: "100px", height: "85px" }}
           />
-        </div>
+        </Link>
 
         <Menu
           style={{
@@ -86,9 +86,18 @@ const App = () => {
           textAlign: "center",
           padding: "24px",
           backgroundColor: "#f0f2f5",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        <div>
+          Ant Design ©{new Date().getFullYear()}
+          <p>Created by A, B, C, D, E</p>
+        </div>
+        <div
+          style={{ marginTop: "8px", fontSize: "14px", color: "#888" }}
+        ></div>
       </Footer>
     </Layout>
   );
