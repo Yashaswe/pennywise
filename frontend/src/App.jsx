@@ -1,34 +1,40 @@
 import { useState, useEffect } from "react";
-
-// import "./App.css";
+import { Link } from "react-router-dom";
 import axios from "axios";
-
 import React from "react";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-const { Header, Content, Footer } = Layout;
-const items = new Array(3).fill(null).map((_, index) => ({
-  key: String(index + 1),
-  label: `nav ${index + 1}`,
-}));
+import {
+  Breadcrumb,
+  Layout,
+  Menu,
+  theme,
+  Image,
+  Card,
+  Typography,
+  Form,
+  Input,
+  Button,
+} from "antd";
+
+const { Header, Content, Footer, Sider } = Layout;
+const { Title, Text } = Typography;
+
+// Define menu items for navigation
+const items = ["Home", "AI Consultation", "Finance Education", "Settings"].map(
+  (label, index) => ({
+    key: String(index + 1),
+    label,
+  })
+);
 
 const App = () => {
-  const [jokes, setJokes] = useState([]);
+  const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  useEffect(() => {
-    axios
-      .get("/api/jokes")
-      .then((response) => {
-        setJokes(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
   return (
-    <Layout>
+    <Layout style={{ minHeight: "100vh" }}>
+      {/* Header with logo and navigation */}
       <Header
         style={{
           position: "sticky",
@@ -37,67 +43,108 @@ const App = () => {
           width: "100%",
           display: "flex",
           alignItems: "center",
+          background: "#fff",
+          padding: "0 24px",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <div className="demo-logo" />
+        <div style={{ marginRight: "16px" }}>
+          <Image
+            src="/src/page-logo.png"
+            alt="Logo"
+            preview={false}
+            style={{ width: "120px", height: "80px" }}
+          />
+        </div>
         <Menu
-          theme="dark"
+          theme="light"
           mode="horizontal"
-          defaultSelectedKeys={["2"]}
+          defaultSelectedKeys={["1"]}
           items={items}
           style={{
             flex: 1,
-            minWidth: 0,
+            justifyContent: "center",
+            borderBottom: "none",
           }}
-        />
+        ></Menu>
       </Header>
-      <Content
-        style={{
-          padding: "0 48px",
-        }}
-      >
-        <Breadcrumb
+
+      {/* Main Layout with Sidebar and Content */}
+      <Layout>
+        {/* Main Content */}
+        <Content style={{ margin: "24px 16px 0" }}>
+          <Breadcrumb style={{ margin: "16px 0", textAlign: "center" }}>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+            <Breadcrumb.Item>Expenses</Breadcrumb.Item>
+          </Breadcrumb>
+
+          {/* Welcome Message */}
+          <div
+            style={{
+              padding: 24,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+              textAlign: "center",
+              marginBottom: "24px",
+            }}
+          >
+            <Title level={2}>Welcome!</Title>
+            <Text>
+              Take control of your finances and plan your budget wisely.
+            </Text>
+          </div>
+        </Content>
+
+        {/* Right Sidebar */}
+        <Sider
+          theme="light"
+          width={400}
           style={{
-            margin: "16px 0",
-          }}
-        >
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div
-          style={{
-            padding: 24,
-            minHeight: 380,
             background: colorBgContainer,
-            borderRadius: borderRadiusLG,
+            padding: "24px",
+            margin: "24px 24px 0 0",
           }}
         >
-          Content
-        </div>
-      </Content>
+          <Form layout="vertical">
+            <Form.Item label="Event Type" name="name">
+              <Input placeholder="Enter your event type" />
+            </Form.Item>
+            <Form.Item label="Expense" name="expense">
+              <Input placeholder="Enter your event expense" />
+            </Form.Item>
+            <Form.Item label="Event Date" name="date">
+              <Input placeholder="Enter your event date" />
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{
+                  width: "100%",
+                  backgroundColor: "#FFB26F",
+                  "&hover": { backgroundColor: "#DE8F5F" },
+                }}
+              >
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+        </Sider>
+      </Layout>
+
+      {/* Footer */}
       <Footer
         style={{
           textAlign: "center",
+          padding: "24px",
+          backgroundColor: "#f0f2f5",
         }}
       >
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
       </Footer>
     </Layout>
   );
-
-  // return (
-  //   <>
-  //     <h1>Yahs</h1>
-  //     <p>Jokes:{jokes.length}</p>
-  //     {jokes.map((joke, index) => (
-  //       <div key={joke.id}>
-  //         <h3>{joke.title}</h3>
-  //         <p>{joke.content}</p>
-  //       </div>
-  //     ))}
-  //   </>
-  // );
 };
 
 export default App;
