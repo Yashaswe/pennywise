@@ -76,17 +76,18 @@ const App = () => {
           width: "100%",
           display: "flex",
           alignItems: "center",
-          background: "#fff",
-          padding: "0 24px",
+          background: "#DFD3C3",
+          padding: "0 40px",
+          height: 75,
           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
         <div style={{ marginRight: "16px" }}>
           <Image
-            src="/src/page-logo.png"
+            src="/src/logo2.png"
             alt="Logo"
             preview={false}
-            style={{ width: "120px", height: "80px" }}
+            style={{ width: "100px", height: "85px" }}
           />
         </div>
 
@@ -95,6 +96,7 @@ const App = () => {
             flex: 1,
             justifyContent: "center",
             borderBottom: "none",
+            backgroundColor: "#DFD3C3",
           }}
           theme="light"
           mode="horizontal"

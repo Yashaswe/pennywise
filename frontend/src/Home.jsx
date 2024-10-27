@@ -66,11 +66,7 @@ const Home = () => {
             <Button
               type="primary"
               htmlType="submit"
-              style={{
-                width: "100%",
-                backgroundColor: "#FFB26F",
-                "&hover": { backgroundColor: "#DE8F5F" },
-              }}
+              style={{ width: "100%", backgroundColor: "#AB886D" }}
             >
               Submit
             </Button>
