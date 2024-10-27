@@ -1,34 +1,42 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Layout, Menu, theme, Image, Typography } from "antd";
 
-// import "./App.css";
-import axios from "axios";
+import HomeBar from "./HomeBar";
+const { Header, Content, Footer, Sider } = Layout;
 
-import React from "react";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-const { Header, Content, Footer } = Layout;
-const items = new Array(3).fill(null).map((_, index) => ({
-  key: String(index + 1),
-  label: `nav ${index + 1}`,
-}));
+// Define menu items for navigation
+const items = [
+  { label: "Home", key: "/" },
+  {
+    label: "AI Consultation",
+    key: "chatbot",
+  },
+  {
+    label: "Finance Education",
+    key: "info",
+  },
+];
 
 const App = () => {
-  const [jokes, setJokes] = useState([]);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const location = useLocation();
+  const { pathname } = location;
+  const navigate = useNavigate();
 
+  const [sidebarLocation, setSidebarLocation] = useState(pathname);
   useEffect(() => {
-    axios
-      .get("/api/jokes")
-      .then((response) => {
-        setJokes(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    setSidebarLocation(
+      pathname.includes("game-analytics")
+        ? "/dashboard/game-analytics"
+        : pathname
+    );
+  }, [pathname]);
+  function handleClick(e) {
+    navigate(e.key);
+  }
+
   return (
-    <Layout>
+    <Layout style={{ minHeight: "100vh" }}>
       <Header
         style={{
           position: "sticky",
@@ -37,67 +45,49 @@ const App = () => {
           width: "100%",
           display: "flex",
           alignItems: "center",
+          background: "#DFD3C3",
+          padding: "0 40px",
+          height: 75,
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <div className="demo-logo" />
+        <div style={{ marginRight: "16px" }}>
+          <Image
+            src="/src/logo2.png"
+            alt="Logo"
+            preview={false}
+            style={{ width: "100px", height: "85px" }}
+          />
+        </div>
+
         <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["2"]}
-          items={items}
           style={{
             flex: 1,
-            minWidth: 0,
+            justifyContent: "center",
+            borderBottom: "none",
+            backgroundColor: "#DFD3C3",
           }}
-        />
+          theme="light"
+          mode="horizontal"
+          selectedKeys={[sidebarLocation]}
+          onClick={handleClick}
+          items={items}
+        ></Menu>
       </Header>
-      <Content
-        style={{
-          padding: "0 48px",
-        }}
-      >
-        <Breadcrumb
-          style={{
-            margin: "16px 0",
-          }}
-        >
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div
-          style={{
-            padding: 24,
-            minHeight: 380,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          Content
-        </div>
-      </Content>
+
+      <HomeBar />
+
       <Footer
         style={{
           textAlign: "center",
+          padding: "24px",
+          backgroundColor: "#f0f2f5",
         }}
       >
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
       </Footer>
     </Layout>
   );
-
-  // return (
-  //   <>
-  //     <h1>Yahs</h1>
-  //     <p>Jokes:{jokes.length}</p>
-  //     {jokes.map((joke, index) => (
-  //       <div key={joke.id}>
-  //         <h3>{joke.title}</h3>
-  //         <p>{joke.content}</p>
-  //       </div>
-  //     ))}
-  //   </>
-  // );
 };
 
 export default App;
