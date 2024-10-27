@@ -1,123 +1,94 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import React from "react";
-import { Breadcrumb, Layout, Menu, Card, Row, Col, Image, Typography, Button } from "antd";
-import { InstagramOutlined, TwitterOutlined, LinkedinOutlined, MailOutlined, ArrowRightOutlined } from "@ant-design/icons";
-import "./App.css";
+import {
+  Breadcrumb,
+  Layout,
+  Menu,
+  Card,
+  Row,
+  Col,
+  Image,
+  Typography,
+  Button,
+} from "antd";
+import {
+  InstagramOutlined,
+  TwitterOutlined,
+  LinkedinOutlined,
+  MailOutlined,
+  ArrowRightOutlined,
+} from "@ant-design/icons";
+import "./Info.css";
 
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 
-const items = new Array(3).fill(null).map((_, index) => ({
-  key: String(index + 1),
-  label: `nav ${index + 1}`,
-}));
-
 const Info = () => {
-  const [jokes, setJokes] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("/api/jokes")
-      .then((response) => {
-        setJokes(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   const cardData = [
     {
       title: "Responsible Financing",
       image: "/src/finan.png",
       alt: "Responsible Financing",
-      description: "Discover sustainable financing practices that empower you to secure your financial future. Learn how to make ethical financial decisions, manage your money wisely, and invest in ways that benefit both you and the community.",
-      link: "https://billionbricks.org/blog/ybdt6uc0prinb1rdghwukiztde3wo8/"
+      description:
+        "Discover sustainable financing practices that empower you to secure your financial future. Learn how to make ethical financial decisions, manage your money wisely, and invest in ways that benefit both you and the community.",
+      link: "https://billionbricks.org/blog/ybdt6uc0prinb1rdghwukiztde3wo8/",
     },
     {
       title: "Sustainable Investing",
       image: "/src/respon.png",
       alt: "Sustainable Investing",
-      description: "Explore the world of ESG (Environmental, Social, Governance) investing. Understand what sustainable investing entails and how you can align your investments with your values, supporting companies that prioritize positive social and environmental impact.",
-      link: "https://www.sciencedirect.com/science/article/pii/S2666188824000960"
+      description:
+        "Explore the world of ESG (Environmental, Social, Governance) investing. Understand what sustainable investing entails and how you can align your investments with your values, supporting companies that prioritize positive social and environmental impact.",
+      link: "https://www.sciencedirect.com/science/article/pii/S2666188824000960",
     },
     {
       title: "Economic Conditions",
       image: "/src/sustain.png",
       alt: "Economic Conditions",
-      description: "Stay informed about key economic factors such as inflation and its effects on your finances. Learn to recognize financial scams and understand how to protect your money in an ever-changing economic landscape.",
-      link: "https://www.investopedia.com/terms/i/inflation.asp"
-    }
+      description:
+        "Stay informed about key economic factors such as inflation and its effects on your finances. Learn to recognize financial scams and understand how to protect your money in an ever-changing economic landscape.",
+      link: "https://www.investopedia.com/terms/i/inflation.asp",
+    },
   ];
 
   return (
-    <Layout className="Layout">
-      <Header className="header">
-        <div className="demo-logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["3"]}
-          items={items}
-          className="menu"
-        />
-      </Header>
-      <Content className="content">
-        <Breadcrumb className="breadcrumb">
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>Information</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className="content-container">
-          <Title level={2} style={{ textAlign: 'center' }}>Grow Knowledge, Grow Money</Title>
-          <Row gutter={16}>
-            {cardData.map((card, index) => (
-              <Col span={8} key={index}>
-                <Card
-                  hoverable
-                  className="card"
-                  cover={
-                    <Image
-                      className="card-image"
-                      src={card.image}
-                      alt={card.alt}
-                      preview={false}
-                    />
+    <div className="content-container">
+      <Title level={2} style={{ textAlign: "center" }}>
+        Grow Knowledge, Grow Money
+      </Title>
+      <Row gutter={16}>
+        {cardData.map((card, index) => (
+          <Col span={8} key={index}>
+            <Card
+              hoverable
+              className="card"
+              cover={
+                <Image
+                  className="card-image"
+                  src={card.image}
+                  alt={card.alt}
+                  preview={false}
+                />
+              }
+              actions={[
+                <Button
+                  type="link"
+                  className="learn-more-button"
+                  onClick={() =>
+                    window.open(card.link, "_blank", "noopener noreferrer")
                   }
-                  actions={[
-                    <Button 
-                      type="link" 
-                      className="learn-more-button"
-                      onClick={() => window.open(card.link, '_blank', 'noopener noreferrer')}
-                    >
-                      Learn More <ArrowRightOutlined />
-                    </Button>
-                  ]}
                 >
-                  <Card.Meta
-                    title={card.title}
-                    description={card.description}
-                  />
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </div>
-      </Content>
-      <Footer className="footer">
-        <div className="footer-icons">
-          <InstagramOutlined className="icon" />
-          <TwitterOutlined className="icon" />
-          <LinkedinOutlined className="icon" />
-          <MailOutlined className="icon" />
-        </div>
-        <div>Ant Design ©{new Date().getFullYear()} Created by Ant UED</div>
-        <div>
-          <a href="#" className="footer-link">Private Policy</a> | <a href="#" className="footer-link">Terms Of Service</a>
-        </div>
-      </Footer>
-    </Layout>
+                  Learn More <ArrowRightOutlined />
+                </Button>,
+              ]}
+            >
+              <Card.Meta title={card.title} description={card.description} />
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 };
 

@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import React from "react";
+import { useEffect, useState } from "react";
+import {
+  Outlet,
+  Link,
+  useLocation,
+  useNavigate,
+  Routes,
+  Route,
+} from "react-router-dom";
 import {
   Breadcrumb,
   Layout,
@@ -14,24 +19,52 @@ import {
   Input,
   Button,
 } from "antd";
-
+import Home from "./Home";
+import Chatbot from "./Chatbot";
+import HomeBar from "./HomeBar";
 const { Header, Content, Footer, Sider } = Layout;
 const { Title, Text } = Typography;
 
 // Define menu items for navigation
-const items = ["Home", "AI Consultation", "Finance Education", "Settings"].map(
-  (label, index) => ({
-    key: String(index + 1),
-    label,
-  })
-);
+const items = [
+  { label: "Home", key: "/" },
+  {
+    label: "AI Consultation",
+    key: "chatbot",
+  },
+  {
+    label: "Finance Education",
+    key: "info",
+  },
+];
+
+// const items = ["Home", "AI Consultation", "Finance Education", "Settings"].map(
+//   (label, index) => ({
+//     key: String(index + 1),
+//     label,
+//   })
+// );
 
 const App = () => {
+  const location = useLocation();
+  const { pathname } = location;
+  const navigate = useNavigate();
+
+  const [sidebarLocation, setSidebarLocation] = useState(pathname);
+  useEffect(() => {
+    setSidebarLocation(
+      pathname.includes("game-analytics")
+        ? "/dashboard/game-analytics"
+        : pathname
+    );
+  }, [pathname]);
+  function handleClick(e) {
+    navigate(e.key);
+  }
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
   return (
     <Layout style={{ minHeight: "100vh" }}>
       {/* Header with logo and navigation */}
@@ -56,82 +89,22 @@ const App = () => {
             style={{ width: "120px", height: "80px" }}
           />
         </div>
+
         <Menu
-          theme="light"
-          mode="horizontal"
-          defaultSelectedKeys={["1"]}
-          items={items}
           style={{
             flex: 1,
             justifyContent: "center",
             borderBottom: "none",
           }}
+          theme="light"
+          mode="horizontal"
+          selectedKeys={[sidebarLocation]}
+          onClick={handleClick}
+          items={items}
         ></Menu>
       </Header>
 
-      {/* Main Layout with Sidebar and Content */}
-      <Layout>
-        {/* Main Content */}
-        <Content style={{ margin: "24px 16px 0" }}>
-          <Breadcrumb style={{ margin: "16px 0", textAlign: "center" }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
-            <Breadcrumb.Item>Expenses</Breadcrumb.Item>
-          </Breadcrumb>
-
-          {/* Welcome Message */}
-          <div
-            style={{
-              padding: 24,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-              textAlign: "center",
-              marginBottom: "24px",
-            }}
-          >
-            <Title level={2}>Welcome!</Title>
-            <Text>
-              Take control of your finances and plan your budget wisely.
-            </Text>
-          </div>
-        </Content>
-
-        {/* Right Sidebar */}
-        <Sider
-          theme="light"
-          width={400}
-          style={{
-            background: colorBgContainer,
-            padding: "24px",
-            margin: "24px 24px 0 0",
-          }}
-        >
-          <Form layout="vertical">
-            <Form.Item label="Event Type" name="name">
-              <Input placeholder="Enter your event type" />
-            </Form.Item>
-            <Form.Item label="Expense" name="expense">
-              <Input placeholder="Enter your event expense" />
-            </Form.Item>
-            <Form.Item label="Event Date" name="date">
-              <Input placeholder="Enter your event date" />
-            </Form.Item>
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                style={{
-                  width: "100%",
-                  backgroundColor: "#FFB26F",
-                  "&hover": { backgroundColor: "#DE8F5F" },
-                }}
-              >
-                Submit
-              </Button>
-            </Form.Item>
-          </Form>
-        </Sider>
-      </Layout>
+      <HomeBar />
 
       {/* Footer */}
       <Footer
