@@ -91,9 +91,7 @@ const App = () => {
           alignItems: "center",
         }}
       >
-        <div>
-       Created by Yashaswe, Aryama, Prashriya, and Aashma.
-        </div>
+        <div>Created by Yashaswe, Aryama, Prashriya, and Aashma.</div>
         <div
           style={{ marginTop: "8px", fontSize: "14px", color: "#888" }}
         ></div>

@@ -88,6 +88,7 @@ const Chatbot = () => {
           {messages.map((message, i) => (
             <Message
               key={i}
+              style={{ marginTop: "15px" }}
               model={{
                 message: message.message,
                 direction: message.sender === "user" ? "outgoing" : "incoming",
