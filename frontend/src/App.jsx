@@ -93,7 +93,7 @@ const App = () => {
       >
         <div>
           Ant Design ©{new Date().getFullYear()}
-          <p>Created by A, B, C, D, E</p>
+          <p>Created by Yashaswe, Aryama, Prashriya, and Aashma.</p>
         </div>
         <div
           style={{ marginTop: "8px", fontSize: "14px", color: "#888" }}
